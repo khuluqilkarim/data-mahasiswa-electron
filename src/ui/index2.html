@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="qr-code" />
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        ipcRenderer.on('qrCodeData', (event, qrCode) => {
+            const qrImg = document.getElementById('qr-code');
+            qrImg.src = `data:image/png;base64,${qrCode}`;
+        });
+    </script>
+</body>
+
+</html>
